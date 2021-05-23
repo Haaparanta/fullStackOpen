@@ -11,6 +11,47 @@ const anecdotes = [
 
 const votes = Array(anecdotes.length).fill(0)
 
+const allZeroes = () => {
+  for (let i = 0; i < votes.length; i++) {
+    if (votes[i] !== 0) {
+      return false
+    }
+  }
+  return true
+}
+
+const biggest = () => {
+  let big = 0
+  let index = 0
+  for (let i = 0; i < votes.length; ++i) {
+    if (big < votes[i]) {
+      index = i
+      big = votes[i]
+    }
+  }
+  return index
+}
+
+const Mostvotes = () => {
+  if (allZeroes()) {
+    return null
+  }
+  let big = biggest()
+  return (
+    <div>
+      <h1>
+        Anecdote with most votes
+      </h1>
+      <p>
+        {anecdotes[big]}
+      </p>
+      <p>
+        has {votes[big]} votes
+      </p>
+    </div>
+  )
+}
+
 const App = () => {
   const [selected, setSelected] = useState(0)
 
@@ -23,7 +64,6 @@ const App = () => {
   const vote = () => {
     votes[selected] += 1
     setVoted(voted + 1)
-    console.log(votes)
   }
 
   return (
@@ -37,6 +77,7 @@ const App = () => {
       <button onClick={handleClick}>
         next anecdote
       </button>
+      <Mostvotes/>
     </div>
   )
 }
