@@ -12,12 +12,15 @@ const Content = ({parts}) => {
   )
 }
 
+
 const Total = ({parts}) => {
-  let result = 0
-  parts.forEach(part => result += part.exercises)
+  let initialValue = 0
+  const total = parts.reduce( (s, p) => {
+    return s + p.exercises
+  }, initialValue)
   return (
     <div>
-      <p>Number of exercises {result}</p>
+      <p>Number of exercises {total}</p>
     </div>
   )
 }
