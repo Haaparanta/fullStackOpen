@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+var copy = false
 
 const App = () => {
   const [ persons, setPersons] = useState([
@@ -7,33 +8,42 @@ const App = () => {
   ]) 
   const [ newName, setNewName ] = useState('')
 
-  const handleSubjectChange = (event) => {
-    console.log(event.target.value)
-  setNewName(event.target.value)
+
+  const checkForCopies = (props) => {
+    if (props.name === newName) {
+      copy = true
+    }
   }
 
-  const newPerson = (event) => {
+  const addPerson = (event) => {
+    copy = false
     event.preventDefault()
-    const newContact = {
+    const newPerson = {
       name: newName
     }
-    setPersons(persons.concat(newContact))
+    persons.forEach(checkForCopies)
+    if (copy === false) {
+      setPersons(persons.concat(newPerson))
+    } else {
+      alert(`${newName} is already added to phonebook`)
+    }
     setNewName('')
+  }
+
+  const handlePersonChange = (event) => {
+    console.log(event.target.value)
+    setNewName(event.target.value)
   }
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit = {newPerson}>
-        <div>
-          name: <input 
-          value={newName}
-          onChange={handleSubjectChange}/>
-        </div>
-        <div>
-          
-          <button type="submit">add</button>
-        </div>
+      <form onSubmit = {addPerson}>
+        <input 
+        value = {newName} 
+        onChange = {handlePersonChange}
+        />
+        <button type="submit">add</button>
       </form>
       <h2>Numbers</h2>
       <ul>{persons.map(person => <p key={person.name}> {person.name} </p>)}</ul>
