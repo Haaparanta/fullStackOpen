@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Persons from './components/Persons.js' // Perjaatessa pieniä moduuleita
 import Filters from './components/Filters.js'
 import PersonList from './components/PersonsList.js'
+import axios from 'axios'
+
 
 const App = () => {
-  const [persons, setPersons] = useState([ // käytetään react hookkia, ja kun tämä lista päivittyy se ajaa koko jutun uudestaan
-    { name: 'Arto Hellas', number: '040-123456' },
-    { name: 'Ada Lovelace', number: '39-44-5323523' },
-    { name: 'Dan Abramov', number: '12-43-234345' },
-    { name: 'Mary Poppendieck', number: '39-23-6423122' },
-    { name: 'Vesa Haaparanta', number: '112'}
-  ])
+  const [persons, setPersons] = useState([])
+
+  useEffect(() => {
+    console.log('Getting data')
+    axios
+      .get('http://localhost:3001/persons')
+      .then(data => {
+        console.log('Got data')
+        setPersons(data.data)
+      })
+  }, [])
 
   const [filter, setFilter] = useState('')
   const [filterPersons, setFilterPersons] = useState(persons) // oletetaan että kaikki on näkyvissä alussa
