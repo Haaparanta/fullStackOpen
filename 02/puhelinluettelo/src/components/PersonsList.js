@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-
-// lisätty omaksi tiedostokseen, koska jos näitä olisi paljon app.js olisi sekava
+import axios from 'axios'
 
 const PersonList = ({ persons, setPersons }) => {
     const [newName, setNewName] = useState('')
@@ -15,9 +14,14 @@ const PersonList = ({ persons, setPersons }) => {
             number: newNumber
         }
 
-        personsArray.includes(`${personObject.name}`) ? // if lause kysymysmerkillä 
-            alert(`${newName} is already added to phonebook`) : // ennen kaksoispistettä jos on 'truthy'
-            setPersons(persons.concat(personObject)) // kaksoispisteen jos ehto 'falsy'
+        if (personsArray.includes(`${personObject.name}`)) {
+            alert(`${newName} is already added to phonebook`)
+        } else {
+            axios
+                .post('http://localhost:3001/persons', personObject)
+                .then(response => setPersons(persons.concat(response.data)))
+        }
+
 
         setNewName('')
         setNewNumber('')

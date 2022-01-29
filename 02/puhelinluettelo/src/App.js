@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Persons from './components/Persons.js' // Perjaatessa pieniä moduuleita
+import Persons from './components/Persons.js'
 import Filters from './components/Filters.js'
 import PersonList from './components/PersonsList.js'
 import axios from 'axios'
@@ -19,12 +19,12 @@ const App = () => {
   }, [])
 
   const [filter, setFilter] = useState('')
-  const [filterPersons, setFilterPersons] = useState(persons) // oletetaan että kaikki on näkyvissä alussa
+  const [filterPersons, setFilterPersons] = useState(persons) 
 
-  const handleFilterChange = (e) => { // kun muutetaan filteriä eli kutsutaan aina kun filterin tekstikenttä päivittyy
+  const handleFilterChange = (e) => { 
     setFilter(e.target.value)
     setFilterPersons(persons.filter((person) =>
-      (person.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1))) // muokkaa listaa sen mukaan löytääkö sen filteriä vastaava stringiä
+      (person.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1))) 
   }
 
   return (
