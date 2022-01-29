@@ -9,7 +9,6 @@ const App = () => {
   const [persons, setPersons] = useState([])
 
   useEffect(() => {
-    console.log('Getting data')
     comms
       .getAll()
       .then(initialPersons => {
@@ -33,15 +32,11 @@ const App = () => {
       <h2>add a new</h2>
       <PersonList persons={persons} setPersons={setPersons} />
       <h2>Numbers</h2>
-      <table>
-        <tbody>
-          {filter === '' ?
-            <Persons filterPerson={persons} />
-            :
-            <Persons filterPerson={filterPersons} />
-          }
-        </tbody>
-      </table>
+      {filter === '' ?
+        <Persons filterPerson={persons} setPersons={setPersons} />
+        :
+        <Persons filterPerson={filterPersons} setPersons={setPersons} />
+      }
     </div>
   )
 }
