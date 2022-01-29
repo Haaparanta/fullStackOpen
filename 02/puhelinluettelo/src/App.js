@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Persons from './components/Persons.js'
 import Filters from './components/Filters.js'
 import PersonList from './components/PersonsList.js'
-import axios from 'axios'
+import comms from './components/Communicate.js'
 
 
 const App = () => {
@@ -10,11 +10,10 @@ const App = () => {
 
   useEffect(() => {
     console.log('Getting data')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(data => {
-        console.log('Got data')
-        setPersons(data.data)
+    comms
+      .getAll()
+      .then(initialPersons => {
+        setPersons(initialPersons)
       })
   }, [])
 

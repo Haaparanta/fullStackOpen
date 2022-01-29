@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import comms from './Communicate.js'
 
 const PersonList = ({ persons, setPersons }) => {
     const [newName, setNewName] = useState('')
@@ -17,8 +17,8 @@ const PersonList = ({ persons, setPersons }) => {
         if (personsArray.includes(`${personObject.name}`)) {
             alert(`${newName} is already added to phonebook`)
         } else {
-            axios
-                .post('http://localhost:3001/persons', personObject)
+            comms
+                .create('http://localhost:3001/persons', personObject)
                 .then(response => setPersons(persons.concat(response.data)))
         }
 
