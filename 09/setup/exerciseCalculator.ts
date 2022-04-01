@@ -13,5 +13,9 @@ function calculateExercises(dailyExercise: Array<number>, target: number): objec
     return result;
 }
 
-const data = calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2);
-console.log(data);
+const target:number = Number(process.argv[2]);
+const dailyExercise: Array<any> = process.argv.slice(3);
+
+const workoutDays: Array<number> = [];
+
+console.log(calculateExercises(dailyExercise, target));
