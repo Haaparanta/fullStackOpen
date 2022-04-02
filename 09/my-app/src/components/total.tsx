@@ -1,12 +1,13 @@
+import React from "react";
+import { CoursePart } from "../type";
 
-
-const total = ({courseParts}: {courseParts: Array<{name:string, exerciseCount: number}>}) => {
+const total: React.FC<{ courseParts: Array<CoursePart> }> = ({ courseParts }) => {
     return (
         <div>
-            <p>
+            <h2>
                 Number of exercises{" "}
                 {courseParts.reduce((carry, part) => carry + part.exerciseCount, 0)}
-            </p>
+            </h2>
         </div>
     );
 }

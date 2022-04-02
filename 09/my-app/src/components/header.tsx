@@ -1,4 +1,4 @@
-
+import React from "react";
 
 const Header = ({ course}: {course: string}) => {
     return (
