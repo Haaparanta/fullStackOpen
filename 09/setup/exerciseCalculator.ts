@@ -1,4 +1,4 @@
-//hat calculates the average time of daily exercise hours and compares it to the target amount of daily hours and returns an object that includes the following values:
+
 function calculateExercises(dailyExercise: Array<number>, target: number): object {
     const average = dailyExercise.reduce((a, b) => a + b, 0) / dailyExercise.length;
     const result = {
@@ -13,9 +13,4 @@ function calculateExercises(dailyExercise: Array<number>, target: number): objec
     return result;
 }
 
-const target:number = Number(process.argv[2]);
-const dailyExercise: Array<any> = process.argv.slice(3);
-
-const workoutDays: Array<number> = [];
-
-console.log(calculateExercises(dailyExercise, target));
+export default calculateExercises
