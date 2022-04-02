@@ -1,44 +1,19 @@
 import express from "express";
-import DData from "./data/diagnoses.json";
-import PData from "./data/patients.json";
-import { PublicPatient } from "./patient";
+import diagnosesRouter from "./routes/diagnoses";
+import patientsRouter from "./routes/patients";
 
-
-interface Diagnose {
-    code: string;
-    name: string;
-    latin?: string; // optional property
-}
-
-const patients: PublicPatient[] = PData;
-
-const routerD = express.Router();
-const routerP = express.Router();
-
-routerD.get('/', (_req, res) => {
-    res.send(DData);
-});
-
+const PORT = 3001;
 
 const app = express();
-
 app.use(express.json());
+app.use("/api/diagnoses", diagnosesRouter);
+app.use("/api/patients", patientsRouter);
 
-
-app.get("/", (req, res) => {
-    res.send("Hello World!");
+app.get("/api/ping", (_req, res) => {
+    console.log("someone pinged here");
+    res.send("pong");
 });
 
-app.use('/api/diagnoses', routerD);
-
-
-routerP.get('/', (req, res) => {
-    res.send(patients);
-});
-
-app.use('/api/patients', routerP);
-
-const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
