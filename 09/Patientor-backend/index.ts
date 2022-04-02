@@ -1,5 +1,7 @@
 import express from "express";
 import DData from "./data/diagnoses.json";
+import PData from "./data/patients.json";
+import { PublicPatient } from "./patient";
 
 
 interface Diagnose {
@@ -8,9 +10,12 @@ interface Diagnose {
     latin?: string; // optional property
 }
 
-const router = express.Router();
+const patients: PublicPatient[] = PData;
 
-router.get('/', (_req, res) => {
+const routerD = express.Router();
+const routerP = express.Router();
+
+routerD.get('/', (_req, res) => {
     res.send(DData);
 });
 
@@ -24,8 +29,14 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
-app.use('/api/diagnoses', router);
+app.use('/api/diagnoses', routerD);
 
+
+routerP.get('/', (req, res) => {
+    res.send(patients);
+});
+
+app.use('/api/patients', routerP);
 
 const PORT = 3000;
 app.listen(PORT, () => {
