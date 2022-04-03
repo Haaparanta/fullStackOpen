@@ -1,6 +1,6 @@
 import { Diagnose}  from "../types";
 
-const diagnoses: Diagnose[] = [
+const diagnoses: Array<Diagnose> = [
     {
       "code": "M24.2",
       "name": "Disorder of ligament",
@@ -82,6 +82,6 @@ const diagnoses: Diagnose[] = [
       "code": "J12.82",
       "name": "Pneumonia due to coronavirus disease"
     }
-  ]
+  ];
 
 export default diagnoses;

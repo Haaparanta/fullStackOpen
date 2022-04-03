@@ -1,6 +1,6 @@
-import { Patient } from "../types";
-
-const patients: Patient[] = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const patients = [
     {
         "id": "d2773336-f723-11e9-8f0b-362b9e155667",
         "name": "John McClane",
@@ -42,5 +42,4 @@ const patients: Patient[] = [
         "occupation": "Digital evangelist"
     }
 ];
-
-export default patients;
+exports.default = patients;

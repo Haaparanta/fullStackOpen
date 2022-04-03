@@ -9,9 +9,11 @@ router.get('/', (_req, res) => {
 
 router.post('/', (req, res) => {
     try {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         const newPatient = patientsService.postPatients(req.body);
         res.json(newPatient);
     } catch (e: any) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         res.status(400).send(e.message);
     }
 });

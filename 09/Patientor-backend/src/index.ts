@@ -6,6 +6,7 @@ const PORT = 3001;
 
 const app = express();
 app.use(express.json());
+
 app.use("/api/diagnoses", diagnosesRouter);
 app.use("/api/patients", patientsRouter);
 
