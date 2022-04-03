@@ -12,7 +12,7 @@ const getEntries = (): Array<safePatient> => {
     });
 };
 
-const getEntriesById = (id: string): safePatient | undefined => {
+const getEntriesById = (id: string): Patient | undefined => {
     return patients.find((patient) => patient.id == id);
 };
 
