@@ -7,6 +7,16 @@ router.get('/', (_req, res) => {
     res.send(patientsService.getEntries());
 });
 
+router.get('/:id', (req, res) => {
+    const id: string = req.params.id;
+    const patient = patientsService.getEntriesById(id);
+    if (patient) {
+        return res.send(patient);
+    } else {
+        return res.status(404).send({ error: 'Patient not found' });
+    }
+});
+
 router.post('/', (req, res) => {
     try {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument

@@ -12,6 +12,10 @@ const getEntries = (): Array<safePatient> => {
     });
 };
 
+const getEntriesById = (id: string): safePatient | undefined => {
+    return patients.find((patient) => patient.id == id);
+};
+
 const postPatients = (patient: newPatient): Patient => {
     const ids = uuid;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -26,5 +30,6 @@ const postPatients = (patient: newPatient): Patient => {
 
 export default {
     getEntries,
+    getEntriesById,
     postPatients
 };
